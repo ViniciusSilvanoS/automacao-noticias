@@ -1,19 +1,26 @@
 import smtplib
+import os
+
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from biblioteca.data import converter_data_alema_para_br
+
+
+API_GMAIL = os.getenv("API_KEY_GMAIL")
 
 def enviar_email(noticias_json):
     # noticias_dicionario = json.loads(noticias_json)
     noticias_dicionario = noticias_json
     corpo_email = ""
     for i, noticia in enumerate(noticias_dicionario):
+        data_br = converter_data_alema_para_br(noticia["data"])
         if i == 0:
             corpo_email = f"""
-                <h3>Noticias {noticia["data"]}</h3>
-                <br><br>            
+                <h3>Noticias {data_br}</h3>
+                <br><br>
             """
         corpo_email += f"""
-            <p>{noticia['fonte']} {noticia['data']}</p>
+            <p>{noticia['fonte']} {data_br}</p>
             <h2>{noticia["titulo"]}</h2>
             <p>{noticia["resumoNoticia"]}</p>
             <u><a href={noticia['urlNoticia']}>Noticia completa</a></u>
@@ -23,8 +30,9 @@ def enviar_email(noticias_json):
 
     # Configurações do email
     remetente = "viniciussilvano022@gmail.com"
-    destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
-    senha = open("../../EMAIL_KEY", "r").read()
+    destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br"]
+    # destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
+    senha = API_GMAIL
 
     # Criação da mensagem
     msg = MIMEMultipart()

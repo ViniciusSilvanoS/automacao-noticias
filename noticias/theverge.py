@@ -5,9 +5,9 @@ from biblioteca.ia.openai_resumo import ia_resumir_texto
 from biblioteca.filtrar_html import clean_html
 from biblioteca.gerar_hash import fazer_hash
 
-def techcrunch_ia():
+def theverge_tecnologia():
     try:
-        url = "https://techcrunch.com/category/artificial-intelligence/"
+        url = "https://www.theverge.com/tech"
         response = requests.get(url)
         html = response.content
 
@@ -33,9 +33,9 @@ def techcrunch_ia():
         return None
 
 
-def techcrunch_seguranca():
+def theverge_ia():
     try:
-        url = "https://techcrunch.com/category/security/"
+        url = "https://www.theverge.com/ai-artificial-intelligence"
         response = requests.get(url)
         html = response.content
 
