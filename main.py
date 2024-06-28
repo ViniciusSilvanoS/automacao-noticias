@@ -1,8 +1,8 @@
 import json
 
+from biblioteca.enviar_email import enviar_email
 from noticias.captar_noticias import captar_noticias_site
 from biblioteca.ia.openai_melhores_noticas import ia_escolher_noticias
-from biblioteca.enviar_email import enviar_email
 from noticias.techcrunch import techcrunch_ia
 from noticias.techcrunch import techcrunch_seguranca
 from noticias.baguete import baguete
@@ -28,11 +28,13 @@ from noticias.thehackernews import thehackernews
 #         if resultado:
 #             noticias += resultado
 noticias = []
-# funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
+# funcoes = [techcrunch_ia, techcrunch_seguranca, baguete, businessinsider_empresa, businessinsider_inovacao, businessinsider_ia, theverge_ia, theverge_tecnologia, thehackernews]
+funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
 # funcoes = [techcrunch_seguranca]
 # funcoes = [businessinsider_empresa, businessinsider_inovacao, businessinsider_ia]
 # funcoes = [theverge_ia, theverge_tecnologia]
-funcoes = [thehackernews]
+# funcoes = [thehackernews]
+
 
 # Adicionando prints para rastrear chamadas de função
 print("Iniciando a coleta de notícias...")
@@ -75,12 +77,12 @@ for chave, valor in teste.items():
 print("Notícias filtradas: ")
 print(melhores_noticias)
 
-# is_enviar_email = input("Deseja enviar as noticias por email?\n1 para SIM, ou outro valor para NÃO.")
-# if is_enviar_email == "1":
-enviar_email(melhores_noticias)
-print("Finalizado!!!")
-# else:
-#     print("Não foi enviado email!")
+quer_enviar_email = input("Deseja enviar as noticias por email?\n1 para SIM, ou outro valor para NÃO.")
+if quer_enviar_email == "1":
+    enviar_email(melhores_noticias)
+    print("Finalizado!!!")
+else:
+    print("Não foi enviado email!")
 
 # else:
 #     print("Array com links dos sites de noticias está vazio!")

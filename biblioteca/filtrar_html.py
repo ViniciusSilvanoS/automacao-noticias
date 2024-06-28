@@ -15,4 +15,4 @@ def clean_html(html_content):
     for tag in soup.find_all(['img', 'video', 'audio', 'iframe']):
         tag.decompose()
 
-    return soup.prettify()[:30000]
+    return soup.prettify()[:25000]
