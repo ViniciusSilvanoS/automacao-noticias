@@ -30,8 +30,8 @@ def enviar_email(noticias_json):
 
     # Configurações do email
     remetente = "viniciussilvano022@gmail.com"
-    destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br"]
-    # destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
+    # destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br"]
+    destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
     senha = API_GMAIL
 
     # Criação da mensagem

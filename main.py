@@ -10,7 +10,9 @@ from noticias.businessinsider import *
 from noticias.techspot import techspot
 from noticias.theverge import *
 from noticias.thehackernews import thehackernews
-
+from noticias.canaltech import *
+from noticias.microsoft import *
+from noticias.dell import dell
 
 # link_noticias = [
 #     "https://techcrunch.com/category/artificial-intelligence/",
@@ -29,7 +31,8 @@ from noticias.thehackernews import thehackernews
 #             noticias += resultado
 noticias = []
 # funcoes = [techcrunch_ia, techcrunch_seguranca, baguete, businessinsider_empresa, businessinsider_inovacao, businessinsider_ia, theverge_ia, theverge_tecnologia, thehackernews]
-funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
+funcoes = [canaltech_notebook, canaltech_corporativo, microsoft,  microsoft_x, dell]
+# funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
 # funcoes = [techcrunch_seguranca]
 # funcoes = [businessinsider_empresa, businessinsider_inovacao, businessinsider_ia]
 # funcoes = [theverge_ia, theverge_tecnologia]

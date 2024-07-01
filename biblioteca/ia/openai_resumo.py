@@ -16,9 +16,10 @@ def ia_resumir_texto(texto):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": f"Sou responsável por ler o texto da noticia e resumir. Sempre responderei no idioma português do Brasil"},
+                {"role": "system", "content": f"Sou responsável por ler o texto da noticia e resumir o conteúdo de forma objetiva e fácil leitura. "
+                                              f"\nSempre responderei no idioma português do Brasil."
+                                              f"\nO resumo deve ser de forma não tecnica, para que atinja todos os públicos"},
                 {"role": "user", "content": f'Esqueça qualquer formatação json anterior. '
-                                            f'\nNão traga noticias sobre celulares e cripto-moedas.'
                                             f'\nResponda em português brasileiro'
                                             f'\nResuma o texto a seguir retornando em formato json, deixando em média um resumo de 100 palavras: {texto}\nUse o template a seguir: {schema}'}
                 # {"role": "user", "content": f"Olá json!"}
