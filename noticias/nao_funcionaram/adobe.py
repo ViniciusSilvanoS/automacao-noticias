@@ -5,9 +5,9 @@ from biblioteca.ia.openai_resumo import ia_resumir_texto
 from biblioteca.filtrar_html import clean_html
 from biblioteca.gerar_hash import fazer_hash
 
-def captar_noticias_site(link_site):
+def adobe():
     try:
-        url = link_site
+        url = "https://news.adobe.com/news"
         response = requests.get(url)
         html = response.content
 
@@ -31,7 +31,3 @@ def captar_noticias_site(link_site):
     except Exception as e:
         print(e)
         return None
-
-
-
-# techcrunch()
