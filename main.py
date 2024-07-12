@@ -1,5 +1,7 @@
-from biblioteca.enviar_email import enviar_email
+from biblioteca.enviar_email import email_diario
+from biblioteca.enviar_email import email_marketing
 from biblioteca.ia.openai_melhores_noticas import ia_escolher_noticias
+from biblioteca.ia.openai_fazer_html_noticia import ia_fazer_html_noticia
 from noticias.venturebeat import *
 from noticias.qz import *
 from noticias.nao_funcionaram.adobe import adobe
@@ -19,12 +21,14 @@ from noticias.dell import dell
 from noticias.distribuidoras.ingram import *
 from noticias.mit import mit
 from noticias.techspot import techspot
+from repositorio.noticias_repositorio import adicionar_noticias
 
 noticias = []
 # funcoes = [techspot, techcrunch_ia, techcrunch_seguranca, baguete, businessinsider_empresa, businessinsider_inovacao, businessinsider_ia, theverge_ia, theverge_tecnologia, thehackernews, canaltech_notebook, canaltech_corporativo, dell, ingram_ti, ingram_cloud, mit]
 # funcoes = [canaltech_notebook, canaltech_corporativo, microsoft,  microsoft_x, dell, adobe]
 # funcoes = [ingram_ti, ingram_cloud, scansource]
-funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
+# funcoes = [techcrunch_ia, techcrunch_seguranca, baguete]
+funcoes = [baguete]
 # funcoes = [techcrunch_seguranca]
 # funcoes = [businessinsider_empresa, businessinsider_inovacao, businessinsider_ia]
 # funcoes = [theverge_ia, theverge_tecnologia]
@@ -80,14 +84,27 @@ for chave, valor in teste.items():
 print("Notícias filtradas: ")
 print(melhores_noticias)
 
-# Parei aqui
-for melhores_noticias:
+if len(melhores_noticias) > 0:
+    try:
+        adicionar_noticias(melhores_noticias)
+    except Exception as e:
+        print(f"Erro ao adicionar noticias: {e}")
+
+# cont = 0
+# for noticia in melhores_noticias:
+#     cont += 1
+#     print(ia_fazer_html_noticia(noticia))
+#     email_marketing(ia_fazer_html_noticia(noticia))
+#     print(cont + "º email enviado!")
+
 
 
 quer_enviar_email = input("Deseja enviar as noticias por email?\n1 para SIM, ou outro valor para NÃO.")
 if quer_enviar_email == "1":
-    enviar_email(melhores_noticias)
+    email_diario(melhores_noticias)
     print("Finalizado!!!")
 else:
     print("Não foi enviado email!")
+
+
 

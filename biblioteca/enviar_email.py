@@ -8,7 +8,10 @@ from biblioteca.data import converter_data_alema_para_br
 
 API_GMAIL = os.getenv("API_KEY_GMAIL")
 
-def enviar_email(noticias_json):
+destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br"]
+# destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
+
+def email_diario(noticias_json):
     # noticias_dicionario = json.loads(noticias_json)
     noticias_dicionario = noticias_json
     corpo_email = ""
@@ -30,8 +33,6 @@ def enviar_email(noticias_json):
 
     # Configurações do email
     remetente = "viniciussilvano022@gmail.com"
-    # destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br"]
-    destinatarios = ["viniciussilvano022@gmail.com", "vinicius@bestsoft.com.br", "julio@bestsoft.com.br", "rafaela@bestsoft.com.br"]
     senha = API_GMAIL
 
     # Criação da mensagem
@@ -57,5 +58,31 @@ def enviar_email(noticias_json):
     except Exception as e:
         print(f"Erro ao enviar email: {e}")
 
-# Chame a função para enviar o email
-# enviar_email()
+def email_marketing(html):
+
+    # Configurações do email
+    remetente = "viniciussilvano022@gmail.com"
+    senha = API_GMAIL
+
+    # Criação da mensagem
+    msg = MIMEMultipart()
+    msg["From"] = remetente
+    if len(destinatarios) > 1:
+        msg["To"] = ', '.join(destinatarios)
+    else:
+        msg["To"] = destinatarios[0]
+    msg["Subject"] = "Notícias do dia. TESTE"
+
+    # Adicionando o corpo do email
+    msg.attach(MIMEText(html, "html"))
+
+    # Conectando ao servidor SMTP do Gmail
+    try:
+        s = smtplib.SMTP("smtp.gmail.com", 587)
+        s.starttls()
+        s.login(remetente, senha)
+        s.sendmail(remetente, destinatarios, msg.as_string())
+        s.quit()
+        print("Email enviado com sucesso")
+    except Exception as e:
+        print(f"Erro ao enviar email: {e}")

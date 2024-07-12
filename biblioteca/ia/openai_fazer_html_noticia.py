@@ -6,7 +6,7 @@ from biblioteca.extrair_json import extrair_json
 from biblioteca.data import data_alema
 
 # Essa função retorna um dicionario
-def ia_fazer_html_noticia(html, prompt_extra = ""):
+def ia_fazer_html_noticia(json, prompt_extra = ""):
     try:
         API_KEY_OPENAI = os.getenv("API_KEY_OPENAI")
         client = OpenAI(api_key=API_KEY_OPENAI)
@@ -38,7 +38,7 @@ def ia_fazer_html_noticia(html, prompt_extra = ""):
                   <p><a href='{urlNoticia}' class='button'>Leia a notícia completa</a></p>
                 </div>
                 <div class='footer'>
-                  <p>&copy; 2024 Seu Nome ou Empresa. Todos os direitos reservados.</p>
+                  <p>&copy; BestSoft.</p>
                 </div>
               </div>
             </body>
@@ -52,17 +52,19 @@ def ia_fazer_html_noticia(html, prompt_extra = ""):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": f"Responsável por ler a noticia recebida e formular um arquivo html no seguinte formato ({html_template}). A respostá será um html dentro do json no seguinte formato: {schema}"},
-                {"role": "user", "content": f"Responsável por ler a noticia recebida e formular um arquivo html no seguinte formato ({html_template}). A respostá será um html dentro do json no seguinte formato: {schema}"}
+                {"role": "system", "content": f"Responsável por ler a noticia recebida e formular um arquivo html no seguinte formato ({html_template}). A resposta será um html dentro do json no seguinte formato: {schema}"},
+                {"role": "user", "content": f"Com base no JSON a seguir {json}."
+                                            f"\nFaça um HTML no seguinte formato: {html_template}"
+                                            f"\nO documento HTML deve ser retornado em um arquivo json, seguindo o template: {schema}"}
                 ],
             max_tokens=1500,
             response_format={"type": "json_object"},
             temperature=0.9
         )
 
-        print("Retorno dentro da ia fitlro_html: ")
-        print(completion.choices[0].message.content)
+        print("Retorno dentro da ia_fazer_html_noticia: ")
         dicionario_filtrado = extrair_json(completion.choices[0].message.content)
+        print(json.loads(dicionario_filtrado))
         return json.loads(dicionario_filtrado)
     except Exception as e:
         print(e)
