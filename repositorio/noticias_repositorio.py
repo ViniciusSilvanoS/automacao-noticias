@@ -1,3 +1,4 @@
+import gridfs
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -6,6 +7,7 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 
 database = client["marketing_noticias"]
 collection = database["noticias"]
+fs = gridfs.GridFS(database)
 
 def is_duplicado(noticia):
     results = collection.find_one({"id": noticia['id']})
@@ -16,3 +18,7 @@ def adicionar_noticias(noticias):
             collection.insert_one(noticia)
             print("Adicionado!")
 
+def adicionar_imagem(request_imagem, nome):
+    image_id = fs.put(request_imagem.content, filename=nome)
+    print("ID da imagem: ", image_id)
+    return image_id

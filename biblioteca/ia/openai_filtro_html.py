@@ -35,22 +35,6 @@ def ia_filtro_html_para_json(html, prompt_extra = ""):
                             f'\nPegar notícias recentes, no máximo 2 meses atrás, considerando que hoje é dia {data_alema()}.'
                             f'\n{prompt_extra}'}
             ],
-
-        # messages=[
-            #     {"role": "system", "content": f"Responsável por captar titulos e links de noticias de um arquivo html e retornar no formato json. Sempre responder no idioma português do Brasil. "
-            #                                   f"\nEvitar noticias de: 1 - celulares, 2 - criptomoedas, 3 - hardware gamer, 4 - propaganda de revendas, 5 - noticias referente ao próprio site"},
-            #     {"role": "user", "content": f'Capte as informações do arquivo HTML e retorne no formato json com a URL em formato absoluto.'
-            #                                 f'\nCaptar todas noticias presentes no HTML.'
-            #                                 f'\nDesconsidere o tópico da página como um título. Foque apenas nas notícias específicas.'
-            #                                 f'\nResponda SEMPRE em PORTUGUÊS brasileiro, caso esteja em outro idioma, traduza para português brasileiro.'
-            #                                 f'\nHTML: \n{html}\n\nUse o template a seguir: {schema}\n'
-            #                                 f'\n- titulo: Deve ser pego o titulo da notícia. E sempre ser em português brasileiro, caso esteja em outro idioma, traduza para o português brasil.'
-            #                                 f'\n- fonte: Deve fornecer a fonte do site que está sendo acessado.'
-            #                                 f'\n- urlNoticia: Deve ser pego a URL absoluta do titulo em específico. A URL que direciona para a notícia completa. Para considerar se é a (urlNoticia) correta, geralmente a url terá o mesmo nome da fonte dentro da url. Ex.: www.[fonte]...'
-            #                                 f'\n- data: Deve pegar a data da postagem da notícia. Caso não tenha, utilizar o dia de hoje, dia {data_alema()}\n'
-            #                                 f'\nPegar noticias recentes, no máximo 2 meses para trás, considerando que hoje é dia {data_alema()}'
-            #                                 f'\n{prompt_extra}'}
-            # ],
             max_tokens=1500,
             response_format={"type": "json_object"},
             temperature=0.9

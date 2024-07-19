@@ -2,7 +2,7 @@ import json
 import requests
 from biblioteca.ia.openai_filtro_html import ia_filtro_html_para_json
 from biblioteca.ia.openai_resumo import ia_resumir_texto
-from biblioteca.filtrar_html import clean_html
+from biblioteca.filtrar_html import limpar_html_sem_imagem
 from biblioteca.gerar_hash import fazer_hash
 
 def venturebeat_ai():
@@ -11,7 +11,7 @@ def venturebeat_ai():
         response = requests.get(url)
         html = response.content
 
-        html_limpo = clean_html(html)
+        html_limpo = limpar_html_sem_imagem(html)
 
         dicionario_noticia = ia_filtro_html_para_json(html_limpo)
 
