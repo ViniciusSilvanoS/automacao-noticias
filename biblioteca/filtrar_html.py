@@ -32,7 +32,8 @@ def limpar_html_com_imagem(html_content):
     for tag in soup.find_all(['video', 'audio', 'iframe']):
         tag.decompose()
 
-    return soup.prettify()[:25000]
+    return soup
+    # return soup.prettify()[:25000]
 
 # def limpar_html_caractere(html_content):
 #     soup = bs(html_content, 'html.parser')
