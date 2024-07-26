@@ -7,6 +7,7 @@ from noticias.baguete import baguete
 from biblioteca.ia.openai_captar_imagem import ia_captar_imagem_site
 from biblioteca.ia.openai_gerar_imagem import ia_fazer_imagem
 from repositorio.noticias_repositorio import adicionar_noticias
+from biblioteca.data import data_alema
 
 noticias = []
 # funcoes = [techspot, techcrunch_ia, techcrunch_seguranca, baguete, businessinsider_empresa, businessinsider_inovacao, businessinsider_ia, theverge_ia, theverge_tecnologia, thehackernews, canaltech_notebook, canaltech_corporativo, dell, ingram_ti, ingram_cloud, mit]
@@ -70,12 +71,12 @@ print("Notícias filtradas: ")
 print(melhores_noticias)
 
 # Gerar e salvar imagem na noticia
-# for noticia in melhores_noticias:
-#     id_imagem = ia_fazer_imagem(noticia['titulo'], noticia['resumoNoticia'])
-#     if id_imagem is not None:
-#         noticia["idImagem"] = id_imagem
-#     else:
-#         print("Erro ao adicionar imagem.")
+for noticia in melhores_noticias:
+    id_imagem = ia_fazer_imagem(noticia['titulo'], noticia['resumoNoticia'])
+    if id_imagem is not None:
+        noticia["idImagem"] = id_imagem
+    else:
+        print("Erro ao adicionar imagem.")
 
 
 # Captando a imagem da noticia
@@ -85,11 +86,11 @@ if melhores_noticias:
 
 
 # Adicionando noticias ao banco de dados
-# if melhores_noticias:
-#     try:
-#         adicionar_noticias(melhores_noticias)
-#     except Exception as e:
-#         print(f"Erro ao adicionar noticias: {e}")
+if melhores_noticias:
+    try:
+        adicionar_noticias(melhores_noticias)
+    except Exception as e:
+        print(f"Erro ao adicionar noticias: {e}")
 
 # Fazer email marketing das noticias
 # cont = 0
