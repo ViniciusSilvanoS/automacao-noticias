@@ -2,7 +2,7 @@ import gridfs
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-uri = "mongodb+srv://juliovicente:BJBJTcCZ7UjoQxfG@cluster0.ge3eqjy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+uri = "mongodb+srv://<Name>:<API-KEY>@cluster0.ge3eqjy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 database = client["marketing_noticias"]
